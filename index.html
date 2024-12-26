@@ -40,6 +40,10 @@
       border-radius: 5px;
       display: none;
     }
+    .alert strong {
+      font-weight: bold;
+      font-size: 16px;
+    }
     .footer {
       margin-top: 30px;
       text-align: center;
@@ -68,9 +72,7 @@
         <option value="over-18">Trên 18 tuổi</option>
       </select>
     </div>
-    <div class="alert" id="alert-message">
-      Thông báo! Hiện không còn trẻ ở độ tuổi này.
-    </div>
+    <div class="alert" id="alert-message"></div>
     <div class="footer">
     <a href="https://facebook.com/NguyenVanAnnnnnnnnn" target="_blank">Nguyen Van An</a>
     </div>
@@ -83,12 +85,26 @@
     ageFilter.addEventListener("change", function () {
       const selectedValue = ageFilter.value;
 
-      // Hiển thị thông báo giống nhau cho tất cả độ tuổi
-      if (selectedValue) {
-        alertMessage.style.display = "block";
-        alertMessage.textContent = "Thông báo! Hiện không còn trẻ ở độ tuổi này.";
-      } else {
-        alertMessage.style.display = "none";
+      // Hiển thị thông báo tương ứng
+      switch (selectedValue) {
+        case "under-5":
+          alertMessage.innerHTML = "<strong>Thông báo!</strong> Đã hết trẻ dưới 5 tuổi.";
+          alertMessage.style.display = "block";
+          break;
+        case "5-12":
+          alertMessage.innerHTML = "<strong>Thông báo!</strong> Đã hết trẻ từ 5 đến 12 tuổi.";
+          alertMessage.style.display = "block";
+          break;
+        case "13-18":
+          alertMessage.innerHTML = "<strong>Thông báo!</strong> Đã hết trẻ từ 13 đến 18 tuổi.";
+          alertMessage.style.display = "block";
+          break;
+        case "over-18":
+          alertMessage.innerHTML = "<strong>Thông báo!</strong> Đã hết trẻ trên 18 tuổi.";
+          alertMessage.style.display = "block";
+          break;
+        default:
+          alertMessage.style.display = "none";
       }
     });
   </script>
